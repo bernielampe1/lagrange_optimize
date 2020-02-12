@@ -1,0 +1,442 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[eulergreek]{mathastext}
+\usepackage{bm}
+\usepackage{yfonts}
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\normalfont\scshape} % Make all sections centered, the default font and small caps
+
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{2pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\usepackage[paperwidth=8in,paperheight=11in,left=0.75in,right=0.75in, top=0.75in,bottom=0.75in,footskip=0in,headsep=0in]{geometry}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{2pt}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\Large Bernie Lampe \\
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+\begin{document}
+
+\date{}
+
+\maketitle % Print the title
+
+\vspace{-35mm}
+%------------------------------------------------
+
+\subsection*{a. Deriving Linear Constrained Minimum Variance Dectector (LCMV)}
+
+Let
+\hspace{5pt}
+\(
+\bm{w}^* =
+\underset{\bm{w}}{\operatorname{argmin}}
+\left\{
+\bm{w}^T\bm{R}\bm{w}
+\right\}
+\)
+\hspace{8pt} such that \hspace{8pt}
+\(
+\bm{D}^T\bm{w} = \bm{c}
+\)
+
+\vspace{4mm}
+
+where\hspace{5pt}
+\(
+\bm{w} \in \mathfrak{R}^{Lx1}
+\)
+,\hspace{5pt}
+\(
+\bm{R} \in \mathfrak{R}^{LxL}
+\)
+,\hspace{5pt}
+\(
+\bm{D} = \left[\bm{d}_1 | \bm{d}_2 | ... | \bm{d}_p\right] \in \mathfrak{R}^{Lxp}
+\)
+\hspace{5pt} and \hspace{5pt}
+\(
+\bm{c} \in \mathfrak{R}^{px1}
+\)
+
+\subsubsection*{b. Lagrange Multipler Form}
+
+\(
+J(\bm{w}) = 
+\bm{w}^T\bm{R}\bm{w} + 
+\bm{\lambda}^T
+\left(\bm{D}^T\bm{w} - \bm{c}\right)
+\)
+\hspace{5pt} such that \hspace{5pt}
+\(
+\bm{\lambda} \in \mathfrak{R}^{px1}
+\)
+
+\subsubsection*{c. Derivatives of Cost Equation}
+\(
+\frac{\partial J(\bm{w})}{\partial \bm{w}}\Biggm\lvert_{\bm{w}^*}  = \bm{0}
+\)
+\hspace{5pt}and\hspace{5pt}
+\(
+\frac{\partial J(\bm{w})}{\partial \bm{\lambda}}\Biggm\lvert_{\bm{\lambda}^*}  = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+2 \bm{w}^T\bm{R} + \bm{\lambda}^T\bm{D}^T = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+\bm{D}^T\bm{w} - \bm{c} = \bm{0}
+\)
+
+\subsubsection*{d. Solve for \(\bm{w}\)}
+\(
+\bm{w}^T\bm{R} = -\frac{1}{2}\bm{\lambda}^T\bm{D}^T
+\)
+
+\vspace{2mm}
+
+\(
+\bm{R} \bm{w} = -\frac{1}{2} \bm{D} \bm{\lambda}
+\), note \(\bm{R} = \bm{R}^T\) is symmetric and invertible
+
+\vspace{2mm}
+
+\(
+\bm{w} = -\frac{1}{2}\bm{R}^{-1}\bm{D}\bm{\lambda}
+\)
+
+\subsubsection*{e. Solve for \(\bm{\lambda}\) by substituting in \(\bm{w}\)}
+
+\(
+\bm{D}^T\bm{w} - \bm{c} = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+-\frac{1}{2} \bm{D}^T\bm{R}^{-1}\bm{D}\bm{\lambda} = \bm{c}
+\), note that \(\bm{D}^T\bm{R}^{-1}\bm{D}\) is square and full rank and invertible
+
+\vspace{2mm}
+
+\(
+\bm{\lambda}  = -2(\bm{D}^T\bm{R}^{-1}\bm{D})^{-1}\bm{c}
+\)
+
+\subsubsection*{f. Solve for \(\bm{w}\) by substituting in expression for \(\lambda\)}
+\(
+\bm{w} = -\frac{1}{2}\bm{R}^{-1}\bm{D}\bm{\lambda}
+\)
+
+\vspace{2mm}
+
+\(
+\bm{w}^{LCMV} = \bm{R}^{-1}\bm{D}(\bm{D}^T\bm{R}^{-1}\bm{D})^{-1}\bm{c}
+\)
+
+
+%------------------------------------------------
+\pagebreak
+\subsection*{a. Deriving Linear Constrained Minimum Variance Classifier (LCMVC)}
+
+Let
+\hspace{5pt}
+\(
+\bm{w}_j^* =
+\underset{\bm{w}_j}{\operatorname{argmin}}
+\left\{
+\bm{w}_j^T\bm{R}\bm{w}_j
+\right\}
+\)
+\hspace{8pt} such that \hspace{8pt}
+\(
+\bm{M}^T\bm{w}_j = \bm{c}_j
+\), where \(1\leq j\leq p\)
+
+\vspace{4mm}
+
+where\hspace{5pt}
+\(
+\bm{w}_j \in \mathfrak{R}^{Lx1}
+\)
+,\hspace{5pt}
+\(
+\bm{R} \in \mathfrak{R}^{LxL}
+\)
+,\hspace{5pt}
+\(
+\bm{M} = \left[\bm{m}_1 | \bm{m}_2 | ... | \bm{m}_p\right] \in \mathfrak{R}^{Lxp}
+\)
+\hspace{5pt} and \hspace{5pt}
+\(
+\bm{c} = (0,...,c_j,...,0)^T \in \mathfrak{R}^{px1}
+\)
+
+\subsubsection*{b. Lagrange Multipler Form}
+
+\(
+J(\bm{w}_j) = 
+\bm{w}_j^T\bm{R}\bm{w}_j + 
+\bm{\lambda}^T
+\left(\bm{M}^T\bm{w}_j - \bm{c}_j\right)
+\)
+\hspace{5pt} such that \hspace{5pt}
+\(
+\bm{\lambda} \in \mathfrak{R}^{px1}
+\)
+
+\subsubsection*{c. Derivatives of Cost Equation}
+\(
+\frac{\partial J(\bm{w}_j)}{\partial \bm{w}_j}\Biggm\lvert_{\bm{w}_j^*}  = \bm{0}
+\)
+\hspace{5pt}and\hspace{5pt}
+\(
+\frac{\partial J(\bm{w}_j)}{\partial \bm{\lambda}}\Biggm\lvert_{\bm{\lambda}^*}  = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+2 \bm{w}_j^T\bm{R} + \bm{\lambda}^T\bm{M}^T = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+\bm{M}^T\bm{w}_j - \bm{c}_j = \bm{0}
+\)
+
+\subsubsection*{d. Solve for \(\bm{w}\)}
+\(
+\bm{w}_j^T\bm{R} = -\frac{1}{2}\bm{\lambda}^T\bm{M}^T
+\)
+
+\vspace{2mm}
+
+\(
+\bm{R} \bm{w}_j = -\frac{1}{2} \bm{M} \bm{\lambda}
+\), note \(\bm{R} = \bm{R}^T\) is symmetric and invertible
+
+\vspace{2mm}
+
+\(
+\bm{w}_j = -\frac{1}{2}\bm{R}^{-1}\bm{M}\bm{\lambda}
+\)
+
+\subsubsection*{e. Solve for \(\bm{\lambda}\) by substituting in \(\bm{w}\)}
+
+\(
+\bm{M}^T\bm{w}_j - \bm{c}_j = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+-\frac{1}{2} \bm{M}^T\bm{R}^{-1}\bm{M}\bm{\lambda} = \bm{c}_j
+\), note that \(\bm{M}^T\bm{R}^{-1}\bm{M}\) is square and full rank and invertible
+
+\vspace{2mm}
+
+\(
+\bm{\lambda}  = -2(\bm{M}^T\bm{R}^{-1}\bm{M})^{-1}\bm{c}_j
+\)
+
+\subsubsection*{f. Solve for \(\bm{w}\) by substituting in expression for \(\lambda\)}
+\(
+\bm{w}_j = -\frac{1}{2}\bm{R}^{-1}\bm{M}\bm{\lambda}
+\)
+
+\vspace{2mm}
+
+\(
+\bm{w}_j^{LCMVC} = \bm{R}^{-1}\bm{M}(\bm{M}^T\bm{R}^{-1}\bm{M})^{-1}\bm{c}_j
+\)
+
+
+%------------------------------------------------
+\pagebreak
+\subsection*{a. Deriving Target-Constrained Interference-Minimized Filter (TCIMF)}
+
+\vspace{2mm}
+
+Let
+\hspace{5pt}
+\(
+\bm{w}^* =
+\underset{\bm{w}}{\operatorname{argmin}}
+\left\{
+\bm{w}^T\bm{R}\bm{w}
+\right\}
+\)
+\hspace{8pt} such that \hspace{8pt}
+\(
+\left[\bm{D}\bm{U}\right]^T]\bm{w} = \left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T
+\)
+
+\vspace{4mm}
+
+where\hspace{5pt}
+\(
+\bm{w} \in \mathfrak{R}^{Lx1}
+\)
+,\hspace{5pt}
+\(
+\bm{R} \in \mathfrak{R}^{LxL}
+\)
+,\hspace{5pt}
+\(
+\bm{D} = \left[\bm{d}_1 | \bm{d}_2 | ... | \bm{d}_p\right]
+\)
+\hspace{5pt}
+and
+\hspace{5pt}
+\(
+\bm{U} = \left[\bm{u}_1 | \bm{u}_2 | ... | \bm{u}_q\right]
+\)
+
+\subsubsection*{b. Lagrange Multiplier Form}
+
+\(
+J(\bm{w}) = 
+\bm{w}^T\bm{R}\bm{w} + 
+\bm{\lambda}^T
+\left(\left[\bm{D}\bm{U}\right]^T\bm{w} - \left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T\right)
+\)
+\hspace{5pt} such that \hspace{5pt}
+\(
+\bm{\lambda} \in \mathfrak{R}^{(p+q)x1}
+\)
+
+\subsubsection*{c. Derivatives of Cost Equation}
+\(
+\frac{\partial J(\bm{w})}{\partial \bm{w}}\Biggm\lvert_{\bm{w}^*}  = \bm{0}
+\)
+\hspace{5pt}and\hspace{5pt}
+\(
+\frac{\partial J(\bm{w})}{\partial \bm{\lambda}}\Biggm\lvert_{\bm{\lambda}^*}  = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+2 \bm{w}^T\bm{R} + \bm{\lambda}^T\left[\bm{D}\bm{U}\right]^T = \bm{0}
+\)
+
+\vspace{2mm}
+
+\(
+\left[\bm{D}\bm{U}\right]^T\bm{w} - \left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T = \bm{0}
+\)
+
+\subsubsection*{d. Solve for \(\bm{w}\)}
+
+\(
+\bm{w}^T\bm{R} = -\frac{1}{2}\bm{\lambda}^T\left[\bm{D}\bm{U}\right]^T
+\)
+
+\vspace{2mm}
+
+\(
+\bm{R}\bm{w} = -\frac{1}{2}\left[\bm{D}\bm{U}\right]\bm{\lambda}
+\), note \(\bm{R} = \bm{R}^T\) is symmetric and invertible
+
+\vspace{2mm}
+
+\(
+\bm{w} = -\frac{1}{2}\bm{R}^{-1}\left[\bm{D}\bm{U}\right]\bm{\lambda}
+\)
+
+\subsubsection*{e. Solve for \(\bm{\lambda}\) by substituting in \(\bm{w}\)}
+
+\(
+\left[\bm{D}\bm{U}\right]^T\bm{w} = \left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T
+\)
+
+\vspace{2mm}
+
+\(
+-\frac{1}{2} \left[\bm{D}\bm{U}\right]^T
+\bm{R}^{-1}\left[\bm{D}\bm{U}\right]\bm{\lambda}
+ = \left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T
+\) ,  note that \(\left[\bm{D}\bm{U}\right]^T\bm{R}^{-1}\left[\bm{D}\bm{U}\right]\) is square and full rank \(=>\) invertible
+
+\vspace{2mm}
+
+\(
+\bm{\lambda} = 
+-2\left(\left[\bm{D}\bm{U}\right]^T\bm{R}^{-1}\left[\bm{D}\bm{U}\right]\right)^{-1}
+\left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T
+\)
+
+\subsubsection*{f. Solve for \(\bm{w}\) by substituting in expression for \(\lambda\)}
+\(
+\bm{w} = -\frac{1}{2}\bm{R}^{-1}\left[\bm{D}\bm{U}\right]\bm{\lambda}
+\)
+
+\vspace{2mm}
+
+\(
+\bm{w}^{TCIMF} = \bm{R}^{-1}\left[\bm{D}\bm{U}\right]\left(\left[\bm{D}\bm{U}\right]^T\bm{R}^{-1}\left[\bm{D}\bm{U}\right]\right)^{-1}
+\left[\bm{1}_{px1}^T \bm{0}_{qx1}^T\right]^T
+\)
+
+% references section
+\nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{report}
+
+\end{document}
+
